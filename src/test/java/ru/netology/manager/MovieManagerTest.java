@@ -58,7 +58,7 @@ class MovieManagerTest {
     void shouldRemoveById() {
         manager.removeById(2);
         Movie[] actual = manager.getAll();
-        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six,five, four, second, first};
+        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six, five, four, second, first};
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -66,10 +66,18 @@ class MovieManagerTest {
     void shouldMovieLimit() {
 
         Movie[] actual = manager.movieLimit();
-        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six,five, four, third};
+        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six, five, four, third};
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    /// Остальные тесты для покрытия бранчей
+    @Test
+    public void shouldCoverBranches() {
+        MovieManager manager = new MovieManager(5);
+        manager.setMovieLimit(8);
+        Assertions.assertEquals(8, manager.getMovieLimit());
+
+    }
 
 
 }

@@ -56,7 +56,7 @@ public class MovieManager {
 
     public Movie[] movieLimit() {
         int newLength = movieLimit;
-        if (newLength>movies.length){
+        if (movieLimit>movies.length){
             newLength=movies.length;
         }
 
