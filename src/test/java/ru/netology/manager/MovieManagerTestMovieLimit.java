@@ -7,7 +7,8 @@ import ru.netology.domain.Movie;
 public class MovieManagerTestMovieItem {
     @Test
     void shouldMovieLimitOver() {
-        MovieManager manager = new MovieManager(11);
+        MovieManager manager = new MovieManager(30);
+
         Movie first = new Movie();
         Movie second = new Movie();
         Movie third = new Movie();
@@ -33,7 +34,7 @@ public class MovieManagerTestMovieItem {
         manager.add(eleven);
         manager.add(twelve);
         Movie[] actual = manager.movieLimit();
-        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six, five, four, third, second};
+        Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight, seven, six, five, four, third, second, first};
         Assertions.assertArrayEquals(expected, actual);
     }
     @Test
@@ -66,5 +67,9 @@ public class MovieManagerTestMovieItem {
         Movie[] actual = manager.movieLimit();
         Movie[] expected = new Movie[]{twelve, eleven, ten, nine, eight};
         Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldCoverBranches(){
+
     }
 }
