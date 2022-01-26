@@ -1,70 +1,51 @@
 package ru.netology.manager;
 
 import ru.netology.domain.Movie;
+import ru.netology.repository.MovieRepository;
 
 public class MovieManager {
-    private Movie[] movies = new Movie[0];
-    private Movie movie;
-    private int movieLimit=10;
+    private MovieRepository repository;
 
     public MovieManager() {
     }
 
-    public MovieManager(int movieLimit) {
-        this.movieLimit = movieLimit;
+    public MovieManager(MovieRepository repository) {
+        this.repository = repository;
     }
 
-    public int getMovieLimit() {
-        return movieLimit;
-    }
-
-    public void setMovieLimit(int movieLimit) {
-        this.movieLimit = movieLimit;
-    }
-
-    public Movie[] add(Movie movie) {
-        Movie[] tmp = new Movie[movies.length + 1];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
-        tmp[tmp.length - 1] = movie;
-        movies = tmp;
-
-        return movies;
+    public void add(Movie movie) {
+        repository.save(movie);
     }
 
     public Movie[] getAll() {
+        Movie[] movies = repository.findAll();
         Movie[] result = new Movie[movies.length];
         for (int i = 0; i < result.length; i++) {
             result[i] = movies[movies.length - i - 1];
         }
-        return result;
-    }
-
-    public Movie[] removeById(int idRemove) {
-        Movie[] tmp = new Movie[movies.length - 1];
-        int copyTo = 0;
-        for (int i = 0; i < movies.length; i++) {
-            if (i != idRemove) {
-                tmp[copyTo] = movies[i];
-                copyTo++;
-            }
-        }
-        movies = tmp;
         return movies;
     }
 
-    public Movie[] movieLimit() {
-        int newLength = movieLimit;
-        if (newLength>movies.length){
-            newLength=movies.length;
-        }
-
-        Movie[] tmp = new Movie[newLength];
-        for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = movies[movies.length - i - 1];
-        }
-        movies = tmp;
-        return movies;
+    public void removeById(int idRemove) {
+        repository.removeById(idRemove);
     }
+
+    public void findByID(int idToFind) {
+        repository.findById(idToFind);
+    }
+
+    public void removeAll() {
+        repository.removeAll();
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
