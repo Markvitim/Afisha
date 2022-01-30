@@ -37,5 +37,12 @@ public class MovieManager {
     public void removeAll() {
         repository.removeAll();
     }
+    public int shouldSumId(){
+        int result = 0;
+        for (Movie movie: getAll()){
+            result = result + movie.getId();
+        }
+        return result;
+    }
 
 }
