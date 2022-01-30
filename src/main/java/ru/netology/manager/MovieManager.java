@@ -13,6 +13,7 @@ public class MovieManager {
         this.repository = repository;
     }
 
+
     public void add(Movie movie) {
         repository.save(movie);
     }
