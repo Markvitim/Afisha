@@ -1,25 +1,17 @@
 package ru.netology.manager;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Movie;
-import ru.netology.repository.MovieRepository;
-import java.util.ArrayList;
 
 
-
-@ExtendWith(MockitoExtension.class)
 class MovieManagerTest {
-    @Mock
-    private MovieRepository repository;
-    @InjectMocks
-    private MovieManager manager;
-    private Movie first = new Movie();
-    private Movie second = new Movie();
+    private MovieManager manager = new MovieManager();
+    private Movie first = new Movie(1, "url", "name", "genre", true);
+    private Movie second = new Movie(2, "url", "name", "genre", true);
+    private Movie third = new Movie(3, "url", "name", "genre", true);
+    private Movie four = new Movie(4, "url", "name", "genre", true);
 
 
     public MovieManager getManager() {
@@ -30,27 +22,46 @@ class MovieManagerTest {
         this.manager = manager;
     }
 
+    @BeforeEach
+    public void setUp() {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+    }
+
     @Test
     public void add() {
-
+        manager.add(four);
+        Movie[] expected = new Movie[]{four, third, second, first};
+        Movie[] actual = manager.getAll();
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void getAll() {
-//        Movie[] returned = new Movie[]{first, second};
-//        Mockito.doReturn(returned).when(repository).findAll();
-//        Mockito.verify(repository).findAll();// verify не проходит/ Wanted but not invoked:
+        Movie[] expected = new Movie[]{third, second, first};
+        Movie[] actual = manager.getAll();
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void removeById() {
+        manager.removeById(1);
+        Movie[] expected = new Movie[]{third, first};
+        Movie[] actual = manager.getAll();
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void findByID() {
+        manager.findByID(0);
     }
 
     @Test
     public void removeAll() {
+        manager.removeAll();
+        Movie[] expected = new Movie[]{};
+        Movie[] actual = manager.getAll();
+        Assertions.assertArrayEquals(expected, actual);
     }
 }

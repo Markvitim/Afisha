@@ -3,8 +3,9 @@ package ru.netology.manager;
 import ru.netology.domain.Movie;
 import ru.netology.repository.MovieRepository;
 
+
 public class MovieManager {
-    private MovieRepository repository;
+    private MovieRepository repository = new MovieRepository();
 
     public MovieManager() {
     }

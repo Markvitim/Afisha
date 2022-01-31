@@ -7,7 +7,7 @@ class MovieTest {
 
         @Test
         public void shouldCoverageBranches () {
-            Movie movie = new Movie(3, "ooo", "hhh", "fff", true, 2);
+            Movie movie = new Movie(3, "ooo", "hhh", "fff", true);
             movie.setId(1);
             movie.setImageUrlId("url");
             movie.setName("name");

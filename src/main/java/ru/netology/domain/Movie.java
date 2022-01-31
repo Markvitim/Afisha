@@ -11,7 +11,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int id, String imageUrlId, String name, String genre, boolean premierTomorrow, int movieLimit) {
+    public Movie(int id, String imageUrlId, String name, String genre, boolean premierTomorrow) {
         this.id = id;
         this.imageUrlId = imageUrlId;
         this.name = name;
