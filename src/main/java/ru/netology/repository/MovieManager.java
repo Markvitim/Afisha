@@ -2,14 +2,14 @@ package ru.netology.repository;
 
 import ru.netology.domain.Movie;
 
-public class MovieRepository {
+public class MovieManager {
     private Movie[] movies = new Movie[0];
     private int movieLimit = 10;
 
-    public MovieRepository() {
+    public MovieManager() {
     }
 
-    public MovieRepository(int movieLimit) {
+    public MovieManager(int movieLimit) {
         this.movieLimit = movieLimit;
     }
 
